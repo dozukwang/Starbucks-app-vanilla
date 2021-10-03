@@ -20,3 +20,17 @@ searchInputEl.addEventListener('blur', function () {
   searchEl.classList.remove('focused');
   searchInputEl.setAttribute('placeholder', '');
 });
+
+// 특정 높이까지 스크롤되면 badges를 감추기
+const badgeEl = document.querySelector('header .badges');
+
+window.addEventListener('scroll', _.throttle(function() {
+  if (window.scrollY > 500) {
+    gsap.to(badgeEl, .6, {opacity: 0, display: 'none'});
+    //gsap.to(애니메이션 처리할 요소, 지속시간(s), 애니메이션 옵션)
+  } else { 
+    gsap.to(badgeEl, .6, {opacity: 1, display: 'block'});
+  }
+}, 300));
+//0.3초(300)마다 addEventListener 함수가 작동하도록 제한속도 설정, 과부하방지
+// _.throttle(함수, ms단위의 시간추가)
