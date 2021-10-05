@@ -34,3 +34,40 @@ window.addEventListener('scroll', _.throttle(function() {
 }, 300));
 //0.3초(300)마다 addEventListener 함수가 작동하도록 제한속도 설정, 과부하방지
 // _.throttle(함수, ms단위의 시간추가)
+
+
+// 이미지 순차적 보이기
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+fadeEls.forEach(function(fadeEl, index) {
+  gsap.to(fadeEl, 1, {
+    delay: (index + 1) * .7, //인덱스 순서에 따라 애니메이션 실행 시간이 지연(0.7, 1.4, 2.1 ..)
+    opacity: 1
+  });
+});
+
+
+// vertical 슬라이드(swiper 라이브러리)
+
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical',
+  autoplay: true,
+  loop: true
+});
+
+new Swiper('.promotion .swiper-container', {
+  slidesPerView: 3, // 한번에 보여줄 슬라이드 개수
+  spaceBetween: 10, //슬라이드 사이 여백
+  centeredSlides: true, //1번 슬라이드가 가운데 보이기
+  loop: true,
+  // autoplay: {
+  //   delay: 5000
+  // }
+  pagination:{
+    el: '.promotion .swiper-pagination', //페이지 번호 요소 선택자
+    clickable: true //사용자의 페이지 번호 요소 제어 가능여부
+  },
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next'
+  }
+});
