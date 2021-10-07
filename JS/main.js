@@ -46,7 +46,7 @@ fadeEls.forEach(function(fadeEl, index) {
 });
 
 
-// vertical 슬라이드(swiper 라이브러리)
+// 슬라이드(swiper 라이브러리)
 
 new Swiper('.notice-line .swiper-container', {
   direction: 'vertical',
@@ -71,6 +71,18 @@ new Swiper('.promotion .swiper-container', {
     nextEl: '.promotion .swiper-next'
   }
 });
+
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl:'.awards .swiper-prev',
+    nextEl:'.awards .swiper-next',
+  }
+})
+
 
 //프로모션 섹션 토클 적용하기
 const promotionEl = document.querySelector('.promotion');
@@ -105,3 +117,15 @@ function floatingObject(selector, delay, size){
 floatingObject('.floating1', 1, 15);
 floatingObject('.floating2', 0.5, 15);
 floatingObject('.floating3', 1.5, 20);
+
+// 화면에 보이는지 확인하여 요소 불러오기(scrollmagic)
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach(function(spyEl) {
+  new ScrollMagic
+    .Scene({
+      triggerElement: spyEl, // 보여짐 여부를 감시할 요소
+      triggerHook: .8  // 뷰포트의 맨위와 맨아래(0~1) 사이 어느 지점에 감시요소를 감시하는 트리거를 작성할 것인가를 작성하는 요소
+    })
+    .setClassToggle(spyEl, 'show')
+    .addTo(new ScrollMagic.Controller())
+})
