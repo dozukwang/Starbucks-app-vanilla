@@ -59,6 +59,33 @@ a {text-decoration: none;}
   color: #333;
   background-color: #fff;
 }
+/* section 애니메이션 정의 */
+.back-to-position{
+  opacity: 0;
+  transition: 1s;
+}
+.back-to-position.to-right{
+  transform: translateX(-150px);
+}
+.back-to-position.to-left{
+  transform: translateX(150px);
+}
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+  transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+}
 /* Typography */
 body{
   color: #333;
@@ -325,7 +352,6 @@ header .badges .badge{
 .notice .notice-line .inner__left .swiper-container{
   height: 62px;
   flex-grow: 1;
-  overflow: hidden;
 }
 .notice .notice-line .inner__left .swiper-slide{
   height: 62px;
@@ -647,7 +673,6 @@ header .badges .badge{
   position: absolute;
   width: 334px;
   height: 334px;
-  border: 1px solid red;
   backface-visibility: hidden;
   transition: 1s;
 }
@@ -669,4 +694,84 @@ header .badges .badge{
   left: 0;
   right: 0;
   margin: auto;
+}
+/* FIND STORE */
+.find-store{
+  background-image: url("../images/find_store_bg.jpg");
+}
+.find-store .inner{
+  height: 400px;
+}
+.find-store .texture1{
+  position: absolute;
+  top: 0;
+  left: 400px;
+}
+.find-store .texture2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.find-store .picture{
+  border-radius: 50%;
+  box-shadow: 2px 2px 8px rgba(0,0,0,.5);
+  position: absolute;
+}
+.find-store .picture1{
+  top: -60px;
+  left: 0;
+}
+.find-store .picture2{
+  top: 150px;
+  left: 250px;
+}
+.find-store .text-group{
+  position: absolute;
+  top: 120px;
+  left: 550px;
+}
+.find-store .text-group .title{
+  margin-bottom: 20px;
+}
+.find-store .text-group .description{
+  margin-bottom: 20px;
+}
+.awards{
+  background-color: #272727;
+}
+.awards .inner{
+  padding: 40px 0;
+}
+.awards .swiper-container{
+  width: 100%;
+  height: 40px;
+}
+.awards .swiper-prev,
+.awards .swiper-next{
+  width: 42px;
+  height: 42px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  outline: none;
+  color: #fff;
+  opacity: .3;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.awards .swiper-prev{
+  left: -100px;
+}
+.awards .swiper-next{
+  right: -100px;
+}
+.awards .swiper-prev:hover,
+.awards .swiper-next:hover{
+  background-color: #fff;
+  color: #333;
 }
