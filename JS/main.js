@@ -21,19 +21,43 @@ searchInputEl.addEventListener('blur', function () {
   searchInputEl.setAttribute('placeholder', '');
 });
 
-// 특정 높이까지 스크롤되면 badges를 감추기
+// 특정 높이까지 스크롤되면 badges를 감추기 + 최상단으로 Scroll하기
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 window.addEventListener('scroll', _.throttle(function() {
   if (window.scrollY > 500) {
+    // 배지 숨기기
     gsap.to(badgeEl, .6, {opacity: 0, display: 'none'});
     //gsap.to(애니메이션 처리할 요소, 지속시간(s), 애니메이션 옵션)
+    
+    // to-top 버튼 보이기
+    gsap.to(toTopEl, .2, {
+      x: 0,
+      display: 'flex'
+    });
+
   } else { 
+    // 배지 보이기
     gsap.to(badgeEl, .6, {opacity: 1, display: 'block'});
+    
+    // to-top 버튼 숨기기
+    gsap.to(toTopEl, .2, {
+      x: 100,
+    });
+
   }
 }, 300));
 //0.3초(300)마다 addEventListener 함수가 작동하도록 제한속도 설정, 과부하방지
 // _.throttle(함수, ms단위의 시간추가)
+
+// TO-TOP
+
+toTopEl.addEventListener('click', function() {
+  gsap.to(window, .7, {
+    scrollTo: 0
+  });
+})
 
 
 // 이미지 순차적 보이기
@@ -129,3 +153,7 @@ spyEls.forEach(function(spyEl) {
     .setClassToggle(spyEl, 'show')
     .addTo(new ScrollMagic.Controller())
 })
+
+// 올해 년도 연동하기
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear(); // 2021
